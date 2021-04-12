@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <div id="form_reservar">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+    <form action="/create-reservation" method="POST">
+        <label for="">Cliente: </label>
+        <select class="custom-select" name="id_usuario" required>
+            <option value="">Seleccione un Cliente.</option>
+            {% for dato in datos %}
+                <option value={{ dato[0] }}>{{ dato[1] }}</option>
+            {% endfor %}           
+          </select>
+          <label for="">Sala: </label>
+          <select class="custom-select" name="id_sala" required>
+            <option value="">Seleccione una Sala.</option>
+            {% for dato in salas %}
+                <option value={{ dato[0] }}>{{ dato[1] }}</option>
+            {% endfor %}           
+          </select>
+        <br>
+        <br>
+        <label for="">Fecha: </label>
+        <input type="date" name="fecha" required>
+        <br>
+        <label for="">Hora inicio: </label>
+        <input type="time" name="hora_inicio" required>
+        <br>
+        <label for="">Hora final: </label>
+        <input type="time" name="hora_final" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear Reserva.</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="form_reservar">
+ {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+  <div class="container">
+    <div class="row">
+
+
+      <div class="col-md-12">
+        <h4>Lista Clientes</h4>
+        <div class="table-responsive">
+
+
+          <table id="mytable" class="table table-bordred table-striped">
+
+            <thead>
+
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Direccion</th>
+              <th>Email</th>
+              <th>Numero</th>
+              <th>Editar</th>
+
+              <th>Eliminar</th>
+            </thead>
+            <tbody>
+              {% for dato in datos %}
+              <tr>
+                <td>{{ dato[1] }}</td>
+                <td>{{ dato[2] }}</td>
+                <td>{{ dato[8] }}</td>
+                <td>{{ dato[3] }}</td>
+                <td>{{ dato[7] }}</td>
+                <td>
+                  <button class="btn btn-primary btn-xs" role="link" onclick="window.location='http://localhost:3000/user_preview/{{ dato[0] }}'" data-title="Edit"><i class="far fa-edit"></i></button>
+                </td>
+                  <td>
+                    <form action="http://localhost:3000/user_delete/{{ dato[0] }}" method="POST">
+                  <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('Estas seguro de cancelar reserva del cliente?');" data-title="Delete"><i class="far fa-trash-alt"></i></button>
+                    </form> 
+                  </td>
+              </tr>
+              {% endfor %}  
+            </tbody>
+
+          </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

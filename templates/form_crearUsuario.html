@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+     <div id="form_reservar">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+    <form action="/create-user" method="POST">
+        <br>
+        <label for="">Nombre: </label>
+            <input type="text" name="nombre" required>
+        <br>
+        <label for="">Apellido: </label>
+            <input type="text" name="apellido" required>
+        <br>
+        <label for="">Correo: </label>
+            <input type="email" name="correo" required>
+        <br>
+        <label for="">Contraseña </label>
+            <input type="password" name="contraseña" required>
+        <br>
+        <label for="">Ci: </label>
+            <input type="text" name="ci_usuario" required>
+        <br>
+        <label for="">numero celular: </label>
+            <input type="number" name="cel_usuario" required>
+        <br>
+        <label for="">Direccion: </label>
+            <input type="text" name="direccion" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Registrar Cliente.</button>
+    </form>
+</div>
+{% endblock %}

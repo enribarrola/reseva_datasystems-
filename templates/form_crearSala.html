@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+     <div id="form_reservar">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+    <form action="/create-sala" method="POST">
+ <br>
+        <label for="">Descripcion: </label>
+            <input type="text" name="descripcion" required>
+        <br>
+        <label for="">Capacidad: </label>
+            <input type="number" name="capacidad" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear Sala.</button>
+    </form>
+</div>
+{% endblock %}
